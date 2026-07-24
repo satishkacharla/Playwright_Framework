@@ -6,17 +6,29 @@ pipeline {
         nodejs 'NodeJS-26'
     }
 
+    options {
+        timestamps()
+    }
+
     stages {
 
-        stage('Checkout') {
+        stage('Clean Workspace') {
+            steps {
+                cleanWs()
+            }
+        }
+
+        stage('Checkout Source Code') {
             steps {
                 checkout scm
             }
         }
 
-        stage('Clean Workspace') {
+        stage('Verify Tools') {
             steps {
-                cleanWs()
+                bat 'node -v'
+                bat 'npm -v'
+                bat 'git --version'
             }
         }
 
@@ -40,8 +52,27 @@ pipeline {
     }
 
     post {
+
         always {
+
             archiveArtifacts artifacts: 'playwright-report/**', fingerprint: true
+
+            archiveArtifacts artifacts: 'test-results/**', fingerprint: true
+        }
+
+        success {
+            echo 'Build completed successfully.'
+        }
+
+        failure {
+            echo 'Build failed.'
+        }
+
+        cleanup {
+            cleanWs(
+                deleteDirs: true,
+                disableDeferredWipeout: true
+            )
         }
     }
 }
