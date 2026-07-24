@@ -39,7 +39,6 @@ export class ContactUsPage extends BasePage {
     async submitContactUsForm(contactUsForm: ContactUs) {
         await this.fillContactUsForm(contactUsForm);
         await this.submitButton.click();
-        await this.page.pause();
     }
 
 }
