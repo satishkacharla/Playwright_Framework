@@ -4,7 +4,7 @@ import { Users } from '../../testdata/Users';
 
 test.describe('NC - Contact Us Scenarios', () => {
 
-    test.skip('Contact Us Form Submission Successfull', async ({ header }) => {
+    test('Contact Us Form Submission Successfull', async ({ header }) => {
         const contactUsForm = new ContactUs('Satish', 'kacharlasatish546@gmail.com', 'Service Required', 'Please schedule for a service')
         await header.navigate();
         const loginPage = await header.openLoginPage();
