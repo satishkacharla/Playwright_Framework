@@ -20,6 +20,8 @@ if (fs.existsSync(envFile)) {
 
 console.log("After loading");
 console.log("BASE_URL =", process.env.BASE_URL);
+console.log("ADMIN_EMAIL =", process.env.ADMIN_EMAIL);
+console.log("ADMIN_PASSWORD exists =", !!process.env.ADMIN_PASSWORD);
 
 export class Env {
 
