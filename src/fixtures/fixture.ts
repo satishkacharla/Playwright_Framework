@@ -2,8 +2,6 @@ import { test as base, expect } from '@playwright/test'
 import { LoginPage } from '../pages/LoginPage'
 import { Header } from '../components/Header';
 import { Homepage } from '../pages/HomePage';
-import { User } from '../models/user';
-import { Users } from '../testdata/Users';
 
 type myFixtures = {
     // validUser: User

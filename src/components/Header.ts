@@ -3,6 +3,7 @@ import { Homepage } from '../pages/HomePage';
 import { LoginPage } from '../pages/LoginPage';
 import { BasePage } from '../pages/BasePage';
 import { ContactUsPage } from '../pages/ContactUsPage';
+import { ProductsPage } from '../pages/ProductsPage';
 
 export class Header extends BasePage {
 
@@ -44,6 +45,13 @@ export class Header extends BasePage {
         const contactUsPage = new ContactUsPage(this.page);
         contactUsPage.waitForPageLoad();
         return contactUsPage;
+    }
+
+    async openProductsPage():Promise<ProductsPage> {
+        await this.productsLink.click();
+        const productsPage = new ProductsPage(this.page);
+        await productsPage.waitForPageLoad();
+        return productsPage;
     }
 
 }
